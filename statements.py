@@ -154,10 +154,4 @@ def process_statement (lx,wlist,fb):
                     fb.addBinary ('T_'+stem,wlist[0],wlist[2])
     return msg
 
-lx = Lexicon()
-lx.add("John","P")
-lx.add("John","P")
-print(lx.getAll("P"))
-
-
 # End of PART A.
