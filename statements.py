@@ -155,9 +155,9 @@ def process_statement (lx,wlist,fb):
     return msg
 
 lx = Lexicon()
-fb = FactBase()
-wlist = "John loves Mary".split(" ")
-process_statement(lx,wlist,fb)
-print lx.getAll("P")
+lx.add("John","P")
+lx.add("John","P")
+print(lx.getAll("P"))
+
 
 # End of PART A.
