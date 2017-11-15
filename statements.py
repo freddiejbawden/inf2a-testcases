@@ -78,33 +78,43 @@ class FactBase:
 import re
 from nltk.corpus import brown
 def verb_stem(s):
+
+
     """extracts the stem from the 3sg form of a verb, or returns empty string"""
     #has -> have
     if (s == "has"):
-        return "have"
+        op = "have"
     #unties -> untie
     elif (s == "unties"):
-        return "untie"
+        op = "untie"
     #Xies -> Xie
     elif (len(s) == 4 and re.match("^\wies$",s) != None):
-        return s[:-1]
+        op = s[:-1]
     #ies
     elif (re.match("^\w*ies$",s) != None):
-        return s[:-3] + "y"
+        op = s[:-3] + "y"
     #se not sse
     elif (re.match("^\w*[^s]ses$",s) != None):
-        return s[:-1]
+        op = s[:-1]
     #ze not zze
     elif (re.match("^\w*[^z]zes$",s) != None):
-        return s[:-1]
+        op = s[:-1]
     #es
     elif (re.match("\w*([ox]|sh|ch|ss|zz)es", s) != None):
-        return s[:-2]
+        op = s[:-2]
     elif (re.match("\w*[^sxyz]s",s)):
-        return s[:-1]
+        op = s[:-1]
     else:
-        return ""
-
+        op = ""
+    btw = brown.tagged_words()
+    for word in btw:
+        if s == word[0]:
+            if word[1] == "VBZ":
+                return op
+        elif op == word[0]:
+            if word[1] == "VB":
+                return op
+    return ""
 
 
 
@@ -145,14 +155,9 @@ def process_statement (lx,wlist,fb):
     return msg
 
 lx = Lexicon()
-lx.add("John","N")
-lx.add("Shelia","N")
-lx.add("John","T")
 fb = FactBase()
-fb.addUnary("duck","John")
-fb.addBinary("love","John","Mary")
-fb.addBinary("love","John","Mildrid")
-print(fb.queryUnary("duck","John"))
-print(fb.queryBinary("love","Mildrid","John"))
+wlist = "John loves Mary".split(" ")
+process_statement(lx,wlist,fb)
+print lx.getAll("P")
 
 # End of PART A.
