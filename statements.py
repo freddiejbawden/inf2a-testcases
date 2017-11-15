@@ -79,8 +79,33 @@ import re
 from nltk.corpus import brown
 def verb_stem(s):
     """extracts the stem from the 3sg form of a verb, or returns empty string"""
-    #stem is have
-    #see notepad for flow chart
+    #has -> have
+    if (s == "has"):
+        return "have"
+    #unties -> untie
+    elif (s == "unties"):
+        return "untie"
+    #Xies -> Xie
+    elif (len(s) == 4 and re.match("^\wies$",s) != None):
+        return s[:-1]
+    #ies
+    elif (re.match("^\w*ies$",s) != None):
+        return s[:-3] + "y"
+    #se not sse
+    elif (re.match("^\w*[^s]ses$",s) != None):
+        return s[:-1]
+    #ze not zze
+    elif (re.match("^\w*[^z]zes$",s) != None):
+        return s[:-1]
+    #es
+    elif (re.match("\w*([ox]|sh|ch|ss|zz)es", s) != None):
+        return s[:-2]
+    elif (re.match("\w*[^sxyz]s",s)):
+        return s[:-1]
+    else:
+        return ""
+
+
 
 
 def add_proper_name (w,lx):
