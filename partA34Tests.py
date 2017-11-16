@@ -37,15 +37,15 @@ class TestPartA3(unittest.TestCase):
     def test_17(self):
         self.assertEqual(verb_stem("dresses"),"dress")
     def test_18(self):
-        self.assertEqual(verb_stem("fizzes"),"fizz")
+        self.assertEqual(verb_stem("fizzes"),"")
     def test_19(self):
         self.assertEqual(verb_stem("loses"),"lose")
     def test_20(self):
-        self.assertEqual(verb_stem("dazes"),"daze")
+        self.assertEqual(verb_stem("dazes"),"")
     def test_21(self):
         self.assertEqual(verb_stem("lapses"),"lapse")
     def test_22(self):
-        self.assertEqual(verb_stem("analyses"),"analyse")
+        self.assertEqual(verb_stem("analyzes"),"analyze")
     def test_23(self):
         self.assertEqual(verb_stem("has"),"have")
     def test_24(self):
