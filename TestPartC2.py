@@ -57,13 +57,13 @@ class TestPartC(unittest.TestCase):
         t = Tree("T",["Tp"])
         qp = Tree("QP",[Tree("DO",["DOs"]),np, t])
         p = agreement.V_phrase_num(qp)
-        self.assertEquals(p,"p")
+        self.assertEquals(p,"s")
     def test_10(self):
         np = Tree("NP", [Tree("P",["P"])])
         t = Tree("T",["Tp"])
         qp = Tree("QP",[Tree("DO",["DOs"]),np, t])
         p = agreement.V_phrase_num(qp)
-        self.assertEquals(p,"p")
+        self.assertEquals(p,"s")
     def test_11(self):
         np = Tree("NP", [Tree("P",["P"])])
         t = Tree("I",["Ip"])
