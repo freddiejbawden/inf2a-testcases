@@ -41,7 +41,8 @@ class TestPartB1(unittest.TestCase):
     def test_13(self):
         x = "John likes fish"
         expout =[['P', 'Is', 'Ns'], ['P', 'Is', 'Np'], ['P', 'Is', 'Tp'], ['P', 'Is', 'Ip']]
-        self.assertEqual(tag_words(lx,x.split(" ")),expout)
+
+        self.assertEqual(sorted(tag_words(lx,x.split(" "))),sorted(expout))
     def test_14(self):
         self.assertTrue("sheep" in unchanging_plurals_list)
 
