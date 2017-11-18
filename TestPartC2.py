@@ -8,7 +8,7 @@ class TestPartC(unittest.TestCase):
     def test_1(self):
         t = Tree("VP",[Tree("T",["Tp"])])
         p = agreement.V_phrase_num(t)
-        self.assertEquals(p,"s")
+        self.assertEquals(p,"p")
 
     def test_2(self):
         np = Tree("NP", [Tree("Nom",[Tree("AN",[Tree("N",["Np"])])])])
@@ -40,16 +40,33 @@ class TestPartC(unittest.TestCase):
         rel = Tree("Rel",[np,t])
         p = agreement.V_phrase_num(rel)
         self.assertEquals(p,"s")
-
     def test_7(self):
+        t = Tree("I",["Is"])
+        np = Tree("NP", [Tree("Nom",[Tree("AN",[Tree("N",["Np"])])])])
+        rel = Tree("Rel",[np,t])
+        p = agreement.V_phrase_num(rel)
+        self.assertEquals(p,"")
+    def test_8(self):
         vp2 = Tree("VP",[Tree("BE",["Bep"]),Tree("A",["A"])])
         qp = Tree("QP",[vp2])
         p = agreement.V_phrase_num(qp)
         self.assertEquals(p,"p")
 
-    def test_8(self):
+    def test_9(self):
         np = Tree("NP", [Tree("Nom",[Tree("AN",[Tree("N",["Np"])])])])
         t = Tree("T",["Tp"])
+        qp = Tree("QP",[Tree("DO",["DOs"]),np, t])
+        p = agreement.V_phrase_num(qp)
+        self.assertEquals(p,"p")
+    def test_10(self):
+        np = Tree("NP", [Tree("P",["P"])])
+        t = Tree("T",["Tp"])
+        qp = Tree("QP",[Tree("DO",["DOs"]),np, t])
+        p = agreement.V_phrase_num(qp)
+        self.assertEquals(p,"p")
+    def test_11(self):
+        np = Tree("NP", [Tree("P",["P"])])
+        t = Tree("I",["Ip"])
         qp = Tree("QP",[Tree("DO",["DOs"]),np, t])
         p = agreement.V_phrase_num(qp)
         self.assertEquals(p,"")
